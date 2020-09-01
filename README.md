@@ -19,4 +19,4 @@ The code is run on a raspberry pi computer and uses pronterface http://www.pront
 
 
 
-![Alt text](images/deformed.jpg?raw=true "Title")
+![Alt text](https://github.com/ohughes343/flow_rate_control/images/deformed.jpg?raw=true "Title")
