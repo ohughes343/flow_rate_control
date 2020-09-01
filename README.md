@@ -20,3 +20,6 @@ The code is run on a raspberry pi computer and uses pronterface http://www.pront
 
 
 ![Alt text](https://github.com/ohughes343/flow_rate_control/blob/master/images/deformed.JPG)
+![Alt text](https://github.com/ohughes343/flow_rate_control/blob/master/images/fff.png)
+![Alt text](https://github.com/ohughes343/flow_rate_control/blob/master/images/filament_hd.JPG)
+![Alt text](https://github.com/ohughes343/flow_rate_control/blob/master/images/taz.png)
