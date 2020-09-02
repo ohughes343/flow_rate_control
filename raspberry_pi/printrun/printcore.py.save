@@ -1,0 +1,245 @@
+# This file is part of the Printrun suite.
+#
+# Printrun is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Printrun is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Printrun.  If not, see <http://www.gnu.org/licenses/>.
+
+__version__ = "2.0.0rc6"
+
+import sys
+if sys.version_info.major < 3:
+    print("You need to run this on Python 3")
+    sys.exit(-1)
+
+from serial import Serial, SerialException, PARITY_ODD, PARITY_NONE
+from select import error as SelectError
+import threading
+from queue import Queue, Empty as QueueEmpty
+import time
+import platform
+import os
+import logging
+import traceback
+import errno
+import socket
+import re
+import selectors
+from functools import wraps, reduce
+from collections import deque
+from printrun import gcoder
+from .utils import set_utf8_locale, install_locale, decode_utf8
+try:
+    set_utf8_locale()
+except:
+    pass
+install_locale('pronterface')
+from printrun.plugins import PRINTCORE_HANDLER
+
+def locked(f):
+    @wraps(f)
+    def inner(*args, **kw):
+        with inner.lock:
+            return f(*args, **kw)
+    inner.lock = threading.Lock()
+    return inner
+
+def control_ttyhup(port, disable_hup):
+    """Controls the HUPCL"""
+    if platform.system() == "Linux":
+        if disable_hup:
+            os.system("stty -F %s -hup" % port)
+        else:
+            os.system("stty -F %s hup" % port)
+
+def enable_hup(port):
+    control_ttyhup(port, False)
+
+def disable_hup(port):
+    control_ttyhup(port, True)
+
+PR_EOF = None  #printrun's marker for EOF
+PR_AGAIN = b'' #printrun's marker for timeout/no data
+SYS_EOF = b''  #python's marker for EOF
+SYS_AGAIN = None #python's marker for timeout/no data
+
+class printcore():
+    def __init__(self, port = None, baud = None, dtr=None):
+        """Initializes a printcore instance. Pass the port and baud rate to
+           connect immediately"""
+        self.baud = None
+        self.dtr = None
+        self.port = None
+        self.analyzer = gcoder.GCode()
+        # Serial instance connected to the printer, should be None when
+        # disconnected
+        self.printer = None
+        # clear to send, enabled after responses
+        # FIXME: should probably be changed to a sliding window approach
+        self.clear = 0
+        # The printer has responded to the initial command and is active
+        self.online = False
+        # is a print currently running, true if printing, false if paused
+        self.printing = False
+        self.mainqueue = None
+        self.priqueue = Queue(0)
+        self.queueindex = 0
+        self.lineno = 0
+        self.resendfrom = -1
+        self.paused = False
+        self.sentlines = {}
+        self.log = deque(maxlen = 10000)
+        self.sent = []
+        self.writefailures = 0
+        self.tempcb = None  # impl (wholeline)
+        self.recvcb = None  # impl (wholeline)
+        self.sendcb = None  # impl (wholeline)
+        self.preprintsendcb = None  # impl (wholeline)
+        self.printsendcb = None  # impl (wholeline)
+        self.layerchangecb = None  # impl (wholeline)
+        self.errorcb = None  # impl (wholeline)
+        self.startcb = None  # impl ()
+        self.endcb = None  # impl ()
+        self.onlinecb = None  # impl ()
+        self.loud = False  # emit sent and received lines to terminal
+        self.tcp_streaming_mode = False
+        self.greetings = ['start', 'Grbl ']
+        self.wait = 0  # default wait period for send(), send_now()
+        self.read_thread = None
+        self.stop_read_thread = False
+        self.send_thread = None
+        self.stop_send_thread = False
+        self.print_thread = None
+        self.readline_buf = []
+        self.selector = None
+        self.event_hand# This file is part of the Printrun suite.
+#
+# Printrun is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Printrun is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Printrun.  If not, see <http://www.gnu.org/licenses/>.
+
+__version__ = "2.0.0rc6"
+
+import sys
+if sys.version_info.major < 3:
+    print("You need to run this on Python 3")
+    sys.exit(-1)
+
+from serial import Serial, SerialException, PARITY_ODD, PARITY_NONE
+from select import error as SelectError
+import threading
+from queue import Queue, Empty as QueueEmpty
+import time
+import platform
+import os
+import logging
+import traceback
+import errno
+import socket
+import re
+import selectors
+from functools import wraps, reduce
+from collections import deque
+from printrun import gcoder
+from .utils import set_utf8_locale, install_locale, decode_utf8
+try:
+    set_utf8_locale()
+except:
+    pass
+install_locale('pronterface')
+from printrun.plugins import PRINTCORE_HANDLER
+
+def locked(f):
+    @wraps(f)
+    def inner(*args, **kw):
+        with inner.lock:
+            return f(*args, **kw)
+    inner.lock = threading.Lock()
+    return inner
+
+def control_ttyhup(port, disable_hup):
+    """Controls the HUPCL"""
+    if platform.system() == "Linux":
+        if disable_hup:
+            os.system("stty -F %s -hup" % port)
+        else:
+            os.system("stty -F %s hup" % port)
+
+def enable_hup(port):
+    control_ttyhup(port, False)
+
+def disable_hup(port):
+    control_ttyhup(port, True)
+
+PR_EOF = None  #printrun's marker for EOF
+PR_AGAIN = b'' #printrun's marker for timeout/no data
+SYS_EOF = b''  #python's marker for EOF
+SYS_AGAIN = None #python's marker for timeout/no data
+
+class printcore():
+    def __init__(self, port = None, baud = None, dtr=None):
+        """Initializes a printcore instance. Pass the port and baud rate to
+           connect immediately"""
+        self.baud = None
+        self.dtr = None
+        self.port = None
+        self.analyzer = gcoder.GCode()
+        # Serial instance connected to the printer, should be None when
+        # disconnected
+        self.printer = None
+        # clear to send, enabled after responses
+        # FIXME: should probably be changed to a sliding window approach
+        self.clear = 0
+        # The printer has responded to the initial command and is active
+        self.online = False
+        # is a print currently running, true if printing, false if paused
+        self.printing = False
+        self.mainqueue = None
+        self.priqueue = Queue(0)
+        self.queueindex = 0
+        self.lineno = 0
+        self.resendfrom = -1
+        self.paused = False
+        self.sentlines = {}
+        self.log = deque(maxlen = 10000)
+        self.sent = []
+        self.writefailures = 0
+        self.tempcb = None  # impl (wholeline)
+        self.recvcb = None  # impl (wholeline)
+        self.sendcb = None  # impl (wholeline)
+        self.preprintsendcb = None  # impl (wholeline)
+        self.printsendcb = None  # impl (wholeline)
+        self.layerchangecb = None  # impl (wholeline)
+        self.errorcb = None  # impl (wholeline)
+        self.startcb = None  # impl ()
+        self.endcb = None  # impl ()
+        self.onlinecb = None  # impl ()
+        self.loud = False  # emit sent and received lines to terminal
+        self.tcp_streaming_mode = False
+        self.greetings = ['start', 'Grbl ']
+        self.wait = 0  # default wait period for send(), send_now()
+        self.read_thread = None
+        self.stop_read_thread = False
+        self.send_thread = None
+        self.stop_send_thread = False
+        self.print_thread = None
+        self.readline_buf = []
+        self.selector = None
+        self.event_hand
