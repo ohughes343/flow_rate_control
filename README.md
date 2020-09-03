@@ -41,6 +41,9 @@ I purchased a Raspberry Pi 3 computer, an accompanying HQ camera, and a 16mm len
 **Optical Imaging Software**\
 
 **Adaptive Algorithm**\
+![Deformed Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/equations.png)
+
+![Deformed Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/equation_graph.png)
 
 **Pixel Size Calibration**\
 I took images of filament and a microscope calibration slide at the same distance from the camera to calibrate my software. A 1.79mm diameter chunk of filament took up 508px, which is roughly 0.003mm/px. This is about the best resolution I could get while sampling 10x per second at 640x480. I was able to get 0.001mm/px resolution at lower sampling rates.
@@ -52,7 +55,8 @@ I took images of filament and a microscope calibration slide at the same distanc
 One chunk of **lab-produced** filament was measured 3 times with a Keyence digital micrometer. I measured the same chunk 3 times with my optical system to compare the results.
 
 **Demonstration Part**\
-I printed a thin airfoil part to demonstrate my adaptive control. 
+I printed a thin airfoil part to demonstrate my adaptive control.
+![Demo part](https://github.com/ohughes343/flow_rate_control/blob/master/images/demo_part.png) 
 
 **Future Work**\
 * Universal Mount for other 3D printers
