@@ -46,9 +46,9 @@ I purchased a Raspberry Pi 3 computer, an accompanying HQ camera, and a 16mm len
 I took images of filament and a microscope calibration slide at the same distance from the camera to calibrate my software. A 1.79mm diameter chunk of filament took up 508px, which is roughly 0.003mm/px. This is about the best resolution I could get while sampling 10x per second at 640x480. I was able to get 0.001mm/px resolution at lower sampling rates.
 
 **Results: Optical Diameter Measurement**\
-As-received filament ![As-received](https://github.com/ohughes343/flow_rate_control/blob/master/images/as_received.png)
+![As-received](https://github.com/ohughes343/flow_rate_control/blob/master/images/as_received.png)
 
-Variable diameter filament
+
 ![Variable Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/variable_diameter.png)
 
 **My system vs a Keyence Laser**\
