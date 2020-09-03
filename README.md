@@ -33,12 +33,19 @@ Objective: Develop a low-cost, universal hardware and software modification that
 **Producing Variable Diameter Filament**\
 I hung a 50cm length of filament and heated it with a hair dryer to produce necked down sections. I was careful to make sure the diameter stayed above 1.55mm, as the printer would not extrudate anything smaller. 
 
+![Hairdryer](https://github.com/ohughes343/flow_rate_control/blob/master/images/hairdryer.png)
+
+![Deformed Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/filament_51.png)
+
 
 **Optical Imaging Setup**\
-I purchased a Raspberry Pi 3 computer, an accompanying HQ camera, and a 16mm lens. I also download this extruder part from Lulzbot and modified it to hold the camera and filament in place.
+I purchased a Raspberry Pi 3 computer, an accompanying HQ camera, and a 16mm lens. I also downloaded an extruder part from Lulzbot and modified it to hold the camera and filament in place.
 
 
 **Optical Imaging Software**\
+Images were captured and analyzed 10 times per second. Since the filament was moving at 1mm/s relative to the camera, 1mm of filament has 10 data points. I implemented a moving average to reduce noise - every data point is an average of itself and the previous 9 points.
+
+![Before and after smoothing]](https://github.com/ohughes343/flow_rate_control/blob/master/images/smoothing_graphs.png)
 
 **Adaptive Algorithm**\
 ![Deformed Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/equations.png)
@@ -47,6 +54,8 @@ I purchased a Raspberry Pi 3 computer, an accompanying HQ camera, and a 16mm len
 
 **Pixel Size Calibration**\
 I took images of filament and a microscope calibration slide at the same distance from the camera to calibrate my software. A 1.79mm diameter chunk of filament took up 508px, which is roughly 0.003mm/px. This is about the best resolution I could get while sampling 10x per second at 640x480. I was able to get 0.001mm/px resolution at lower sampling rates.
+
+![Alt text](https://github.com/ohughes343/flow_rate_control/blob/master/images/filament_hd.JPG)
 
 **Results: Optical Diameter Measurement**\
 ![Variable Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/variable_diameter.png)
@@ -58,13 +67,13 @@ One chunk of **lab-produced** filament was measured 3 times with a Keyence digit
 I printed a thin airfoil part to demonstrate my adaptive control.
 ![Demo part](https://github.com/ohughes343/flow_rate_control/blob/master/images/demo_part.png) 
 
-**Future Work**\
+**Future Work**
 * Universal Mount for other 3D printers
 * Use with filament colors other than red
 
 
 ![FFF printer](https://github.com/ohughes343/flow_rate_control/blob/master/images/fff.png)
 
-![Alt text](https://github.com/ohughes343/flow_rate_control/blob/master/images/filament_hd.JPG)
+
 
 ![Lulzbot TAZ 6](https://github.com/ohughes343/flow_rate_control/blob/master/images/taz.png)
