@@ -28,7 +28,7 @@ For experimental filament, however, the tolerances are typically more like ±0.2
 The goal of this project was to print high quality parts using lab-generated filament with ±0.2mm tolerances.
 
 **Objective and Approach**\
-Objective: Develop a low-cost, universal hardware and software modification that allows low-cost desktop printers to compensate for filament diameter variations
+Objective: Develop a low-cost, universal hardware and software modification that allows desktop printers to compensate for filament diameter variations
 
 **Producing Variable Diameter Filament**\
 I hung a 50cm length of filament and heated it with a hair dryer to produce necked down sections. I was careful to make sure the diameter stayed above 1.55mm, as the printer would not extrudate anything smaller. 
