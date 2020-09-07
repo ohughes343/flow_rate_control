@@ -39,13 +39,14 @@ I hung a 50cm length of filament and heated it with a hair dryer to produce neck
 
 
 **Optical Imaging Setup**\
-I purchased a Raspberry Pi 3 computer, an accompanying HQ camera, and a 16mm lens. I also downloaded an extruder part from Lulzbot and modified it to hold the camera and filament in place.
+I purchased a Raspberry Pi 3 computer, an accompanying HQ camera, and a 16mm lens. I also downloaded an [extruder part](https://download.lulzbot.com/TAZ/6.02/production_parts/printed_parts/extruder_latch/) from Lulzbot and modified it to hold the camera and filament in place.
+
 
 
 **Optical Imaging Software**\
 Images were captured and analyzed 10 times per second. Since the filament was moving at 1mm/s relative to the camera, 1mm of filament has 10 data points. I implemented a moving average to reduce noise - every data point is an average of itself and the previous 9 points.
 
-![Before and after smoothing]](https://github.com/ohughes343/flow_rate_control/blob/master/images/smoothing_graphs.png)
+![Before and after smoothing](https://github.com/ohughes343/flow_rate_control/blob/master/images/smoothing_graphs.png)
 
 **Adaptive Algorithm**\
 ![Deformed Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/equations.png)
@@ -59,6 +60,10 @@ I took images of filament and a microscope calibration slide at the same distanc
 
 **Results: Optical Diameter Measurement**\
 ![Variable Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/variable_diameter.png)
+
+**Results: Adaptive Control**\
+I implemented a delay 
+![Variable Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/delay.png)
 
 **My system vs a Keyence Laser**\
 One chunk of **lab-produced** filament was measured 3 times with a Keyence digital micrometer. I measured the same chunk 3 times with my optical system to compare the results.
