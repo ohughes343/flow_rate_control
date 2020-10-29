@@ -40,9 +40,9 @@ I hung a 50cm length of filament and heated it with a hair dryer to produce neck
 **Optical Imaging Setup**\
 I purchased a Raspberry Pi 3 computer, an accompanying HQ camera, and a 16mm lens. I also downloaded an [extruder part](https://download.lulzbot.com/TAZ/6.02/production_parts/printed_parts/extruder_latch/) from Lulzbot and modified it to hold the camera and filament in place.
 
-![Extruder Conduit](https://github.com/ohughes343/flow_rate_control/blob/master/images/extruder_conduit.png)
+![Extruder Conduit](https://github.com/ohughes343/flow_rate_control/blob/master/images/extruder_conduit.PNG)
 
-![Final setup on printhead](https://github.com/ohughes343/flow_rate_control/blob/master/images/final_setup.png)
+![Final setup on printhead](https://github.com/ohughes343/flow_rate_control/blob/master/images/final_setup.PNG)
 
 
 
