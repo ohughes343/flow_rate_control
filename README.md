@@ -58,14 +58,23 @@ I took images of filament and a microscope calibration slide at the same distanc
 ![Alt text](https://github.com/ohughes343/flow_rate_control/blob/master/images/filament_hd.JPG)
 
 **Results: Optical Diameter Measurement**\
+Measuring *the same* chunk of filament 3 times resulted in the plot on the left, demonstrating that my system is highly precise and repeatable. Some of the smoothing may be due to my software averaging, but it is clearly responding to real physical changes.
+The plot on the right demonstrates the same idea with filament that was stretched out to produce very narrow sections.
+
+In both cases, a digital micrometer confirmed the accuracy of the camera. 
 ![Variable Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/variable_diameter.png)
 
 **Results: Adaptive Control**\
-I implemented a delay 
+I implemented a delay in the system to account for the time it takes for the filament to travel from the camera to the nozzle. 
+And this is where I got stuck. I first tried to use a time delay, but this wouldn't work for different speeds or if the motor ever retracted filament. A fixed step delay, which I tried next, is also complicated by retraction. So as of right now, the project *works*, but only if the motor never reverses.
 ![Variable Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/delay.png)
 
 **My system vs a Keyence Laser**\
 One chunk of **lab-produced** filament was measured 3 times with a Keyence digital micrometer. I measured the same chunk 3 times with my optical system to compare the results.
+![Experimental](https://github.com/ohughes343/flow_rate_control/blob/master/images/experimental_vs_laser.jpg)
+
+I made the same comparison with commercial filament.
+![As-received](https://github.com/ohughes343/flow_rate_control/blob/master/images/as_received_vs_laser.jpg)
 
 **Demonstration Part**\
 I printed a thin airfoil part to demonstrate my adaptive control.
