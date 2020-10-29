@@ -71,10 +71,10 @@ And this is where I got stuck. I first tried to use a time delay, but this would
 
 **My system vs a Keyence Laser**\
 One chunk of **lab-produced** filament was measured 3 times with a Keyence digital micrometer. I measured the same chunk 3 times with my optical system to compare the results.
-![Experimental](https://github.com/ohughes343/flow_rate_control/blob/master/images/experimental_vs_laser.jpg)
+![Experimental](https://github.com/ohughes343/flow_rate_control/blob/master/images/experimental_vs_laser.png)
 
 I made the same comparison with commercial filament.
-![As-received](https://github.com/ohughes343/flow_rate_control/blob/master/images/as_received_vs_laser.jpg)
+![As-received](https://github.com/ohughes343/flow_rate_control/blob/master/images/as_received_vs_laser.png)
 
 **Demonstration Part**\
 I printed a thin airfoil part to demonstrate my adaptive control.
