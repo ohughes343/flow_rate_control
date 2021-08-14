@@ -34,7 +34,6 @@ I hung a 50cm length of filament and heated it with a hair dryer to produce neck
 
 ![Hairdryer](https://github.com/ohughes343/flow_rate_control/blob/master/images/hairdryer.png)
 
-![Deformed Filament](https://github.com/ohughes343/flow_rate_control/blob/master/images/filament_51.png)
 
 
 **Optical Imaging Setup**\
