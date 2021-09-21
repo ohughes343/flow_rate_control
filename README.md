@@ -1,7 +1,7 @@
 # flow_rate_control
 
 
-The aim of this project is to produce high-quality prints *regardless of the quality of the filament.* 
+The aim of this project was to produce high-quality prints *regardless of the quality of the filament.* 
 Commercially available filament has tight tolerances (Prusa3D claims +/-0.02mm), but experimental filament is often much worse. Inconsistent diameter or consistently off diameter filament results in poor prints with inaccurate dimensions. To remedy this, I measured the filament diameter during printing and adjusted the flow rate accordingly.
 
 This project should be able to print with filament that varies by as much as 0.2mm from its baseline. Outside those dimensions, the printer will have trouble grabbing the filament and may not extrude at all.
