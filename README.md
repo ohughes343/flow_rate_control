@@ -11,7 +11,6 @@ First, print my modified extruder latch and replace the original part with it.<b
 
 ![Extruder Conduit](https://github.com/ohughes343/flow_rate_control/blob/master/images/extruder_conduit.PNG)
 
-![Final setup on printhead](https://github.com/ohughes343/flow_rate_control/blob/master/images/final_setup.PNG)
 
 Next, print the extension for the camera lens. This is used to create a "macro" effect and zoom in on the filament. <br>
 Be careful not to damage the camera sensor!<br>
