@@ -5,6 +5,7 @@ You will need:
 * Raspberry Pi HQ Camera
 * 16mm lens - To zoom in on the filament
 * Backlight - Important for accurate optical measurement. I strapped a flashlight on my printer but there is probably a more elegant solution.
+* Red filament - I tuned the software to look for red pixels, but feel free to modify it for other colors
 
 First, print my modified extruder latch and replace the original part with it.<br>
 
