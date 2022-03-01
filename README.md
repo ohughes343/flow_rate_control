@@ -4,15 +4,15 @@ Download my modded version of pronterface onto your Raspberry Pi:
 
 
 
-Add your gcode file to the folder
-Edit the measure.py file to include your gcode file: (filename="my_file.gcode")
-Connect your Pi to the printer
-Run the script
+Add your gcode file to the folder<br>
+Edit the measure.py file to include your gcode file: (filename="my_file.gcode")<br>
+Connect your Pi to the printer<br>
+Run the script<br>
 
 
 
 
-# flow_rate_control
+# What is this?
 
 
 The aim of this project was to produce high-quality prints *regardless of the quality of the filament.* 
