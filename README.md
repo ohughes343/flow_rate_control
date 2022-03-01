@@ -1,8 +1,25 @@
 # How To
-Download my modded version of pronterface onto your Raspberry Pi:
+You will need:
+* Lulzbot TAZ 6 - This is the printer I based my design on, but the project could be modified for other printers
+* Raspberry Pi - I wrote the code for a raspberry pi computer but with a few tweaks it can run on any computer. Just need a serial connection to the printer and a camera.
+* Raspberry Pi HQ Camera
+* 16mm lens - To zoom in on the filament
+* Backlight - Important for accurate optical measurement. I strapped a flashlight on my printer but there is probably a more elegant solution.
+
+First, print my modified extruder latch and replace the original part with it.<br>
+
+![Extruder Conduit](https://github.com/ohughes343/flow_rate_control/blob/master/images/extruder_conduit.PNG)
+
+![Final setup on printhead](https://github.com/ohughes343/flow_rate_control/blob/master/images/final_setup.PNG)
+
+Next, print the extension for the camera lens. This is used to create a "macro" effect and zoom in on the filament. <br>
+Be careful not to damage the camera sensor!<br>
+Remove the camera lens and unscrew the black piece that holds the lens.<br>
+Replace this with the printed extender, and then screw the lens back into that.<br>
+You may want to test the camera to get a good zoom - the filament should fill up most of the frame.<br>
+
+Next, download my modded version of pronterface onto your Raspberry Pi:<br>
 ```git clone https://github.com/ohughes343/flow_rate_control/raspberry_pi.git```
-
-
 
 -Add your gcode file to the folder<br>
 -Edit the measure.py file to include your gcode file: (filename="my_file.gcode")<br>
