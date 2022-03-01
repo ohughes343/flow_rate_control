@@ -19,7 +19,7 @@ Replace this with the printed extender, and then screw the lens back into that.<
 You may want to test the camera to get a good zoom - the filament should fill up most of the frame.<br>
 
 Next, download my modded version of pronterface onto your Raspberry Pi:<br>
-```git clone https://github.com/ohughes343/flow_rate_control/raspberry_pi.git```
+```git clone https://github.com/ohughes343/flow_rate_control.git```
 
 -Add your gcode file to the folder<br>
 -Edit the measure.py file to include your gcode file: (filename="my_file.gcode")<br>
