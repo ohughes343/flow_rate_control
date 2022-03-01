@@ -7,7 +7,7 @@ Download my modded version of pronterface onto your Raspberry Pi:
 -Add your gcode file to the folder<br>
 -Edit the measure.py file to include your gcode file: (filename="my_file.gcode")<br>
 -Connect your Pi to the printer<br>
--Run the script<br>
+-Run the script! Print should start automatically<br>
 
 
 
