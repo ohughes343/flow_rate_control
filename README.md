@@ -1,3 +1,17 @@
+# How To
+Download my modded version of pronterface onto your Raspberry Pi:
+```git clone https://github.com/ohughes343/flow_rate_control/raspberry_pi.git```
+
+
+
+Add your gcode file to the folder
+Edit the measure.py file to include your gcode file: (filename="my_file.gcode")
+Connect your Pi to the printer
+Run the script
+
+
+
+
 # flow_rate_control
 
 
